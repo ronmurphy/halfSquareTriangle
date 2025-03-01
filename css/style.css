@@ -1,0 +1,1088 @@
+/* ==================== BASE STYLES ==================== */
+:root {
+    --primary-color: #6a4c93;
+    --primary-light: #8b6db5;
+    --primary-dark: #26418f;
+    --secondary-color: #f4845f;
+    --accent-color: #f78764;
+    --light-color: #f9f7f7;
+    --dark-color: #333333;
+    --border-color: #dddddd;
+    --success-color: #4caf50;
+    --danger-color: #f44336;
+    --header-height: 48px;
+    --sidebar-width: 280px;
+    --background-color: #f5f5f5;
+    
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--background-color);
+    padding: 0;
+    margin: 0;
+    touch-action: manipulation;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ==================== COMPACT HEADER ==================== */
+.compact-header {
+    height: var(--header-height);
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    box-shadow: var(--shadow);
+    z-index: 100;
+}
+
+.compact-header h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.header-actions {
+    display: flex;
+    gap: 4px;
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: var(--header-height);
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background-color: white;
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    z-index: 90;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-section {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+}
+
+.block-categories {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.category-button {
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.category-button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.scrollable {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.template-group {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.template-group.active {
+    display: grid;
+}
+
+.template-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.template-item:hover {
+    background-color: #f0f0f0;
+}
+
+.template-preview {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    background-size: cover;
+    background-position: center;
+}
+
+.template-item span {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Color Palette */
+.color-group {
+    margin-bottom: 15px;
+}
+
+.color-group h3 {
+    font-size: 0.9rem;
+    margin: 0 0 5px 0;
+}
+
+.color-swatches {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+}
+
+.color-swatch {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.color-swatch.active {
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.color-picker-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+#colorPicker {
+    width: 100%;
+    height: 40px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.small-button {
+    padding: 6px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Sidebar buttons */
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sidebar-button:hover {
+    background-color: #e0e0e0;
+}
+
+.tool-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+#mainContent {
+    margin-left: var(--sidebar-width);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: margin-left 0.3s ease;
+    overflow: auto;
+}
+
+#mainContent.full-width {
+    margin-left: 0;
+}
+
+#gridContainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    min-height: 400px;
+    overflow: auto;
+    touch-action: pan-x pan-y;
+}
+
+/* Collapsible panel for design properties */
+.collapsible-panel {
+    border-top: 1px solid #ddd;
+    background-color: white;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    margin-top: 10px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.panel-header h2 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.panel-content {
+    padding: 10px;
+    display: none;
+}
+
+.panel-content.visible {
+    display: block;
+}
+
+/* ==================== BLOCK DESIGN INFO ==================== */
+.info-panel {
+    background-color: #f8f8f8;
+    border-radius: var(--border-radius);
+    padding: 0.8rem;
+    margin: 0.5rem 0 1rem;
+}
+
+#blockList {
+    list-style-type: none;
+    padding-left: 0.5rem;
+}
+
+#blockList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.color-sample {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #ddd;
+    margin-right: 0.5rem;
+}
+
+.block-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.block-visual {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    margin-right: 0.8rem;
+    position: relative;
+}
+
+.half-square-preview {
+    overflow: hidden;
+    position: relative;
+}
+
+/* ==================== MODALS ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    width: 90%;
+    animation: modalOpen 0.3s ease-out;
+    position: relative;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: var(--primary-color);
+}
+
+/* ==================== FORM ELEMENTS ==================== */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+}
+
+input[type="file"] {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: normal;
+}
+
+.grid-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.grid-input input {
+    width: 70px;
+}
+
+/* ==================== TAB CONTROLS ==================== */
+.tabs {
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.tab-content {
+    display: none;
+    padding: 1rem 0;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==================== PROJECT ITEMS ==================== */
+#savedProjectsList {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.project-item:hover {
+    background-color: #f0f0f0;
+}
+
+.project-item .timestamp {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+.empty-message {
+    text-align: center;
+    color: #666;
+    padding: 1rem 0;
+    font-style: italic;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 0.5rem;
+}
+
+#messageBox {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    font-weight: 500;
+}
+
+#messageBox.success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+#messageBox.error {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.primary-button:hover {
+    background-color: var(--primary-light);
+}
+
+/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    :root {
+        --sidebar-width: 240px;
+    }
+    
+    #mainContent {
+        margin-left: 0; /* Start with sidebar collapsed on mobile */
+    }
+    
+    .template-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .color-swatches {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .compact-header h1 {
+        font-size: 1rem;
+    }
+    
+    .panel-content {
+        padding: 8px;
+    }
+}
+
+/* ==================== TEMPLATE DESIGNS ==================== */
+/* These are placeholder styles for template previews */
+.nine-patch {
+    background-image: linear-gradient(#fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%),
+                     linear-gradient(90deg, #fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%);
+    background-size: 100% 33.33%, 33.33% 100%;
+}
+
+.four-patch {
+    background-image: linear-gradient(#fff 50%, #ddd 50%),
+                     linear-gradient(90deg, #fff 50%, #ddd 50%);
+    background-size: 100% 50%, 50% 100%;
+}
+
+.log-cabin {
+    background: conic-gradient(
+        #ddd 0deg, #ddd 90deg,
+        #fff 90deg, #fff 180deg,
+        #ddd 180deg, #ddd 270deg,
+        #fff 270deg, #fff 360deg
+    );
+}
+
+.rail-fence {
+    background: repeating-linear-gradient(45deg, #fff, #fff 10px, #ddd 10px, #ddd 20px);
+}
+
+.ohio-star {
+    background-image: radial-gradient(#ddd 30%, transparent 30%),
+                     linear-gradient(45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%),
+                     linear-gradient(-45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%);
+    background-size: 60% 60%, 100% 100%, 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.sawtooth-star {
+    background-image: linear-gradient(45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%),
+                     linear-gradient(-45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%),
+                     radial-gradient(#fff 35%, transparent 35%);
+    background-size: 100% 100%, 100% 100%, 50% 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.flying-geese {
+    background-image: linear-gradient(45deg, #ddd 45%, transparent 45%),
+                     linear-gradient(-45deg, #ddd 45%, transparent 45%);
+    background-size: 100% 100%, 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.hst-pinwheel {
+    background-image: conic-gradient(
+        #ddd 0deg, #ddd 90deg,
+        #fff 90deg, #fff 180deg,
+        #ddd 180deg, #ddd 270deg,
+        #fff 270deg, #fff 360deg
+    );
+    transform: rotate(45deg);
+    background-size: 100% 100%;
+}
+
+/* Additional quilt block templates */
+.churn-dash {
+    background-image: linear-gradient(#fff 30%, #ddd 30%, #ddd 70%, #fff 70%),
+                     linear-gradient(90deg, #fff 30%, #ddd 30%, #ddd 70%, #fff 70%),
+                     linear-gradient(45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%),
+                     linear-gradient(-45deg, transparent 45%, #ddd 45%, #ddd 55%, transparent 55%);
+    background-size: 100% 100%, 100% 100%, 28% 28%, 28% 28%;
+    background-position: center center, center center, top left, top right;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat-y;
+}
+
+.granny-square {
+    background-image: linear-gradient(#fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%),
+                     linear-gradient(90deg, #fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%),
+                     radial-gradient(circle at center, #ddd 20%, transparent 20%);
+    background-size: 100% 100%, 100% 100%, 33.33% 33.33%;
+    background-position: center, center, center;
+}
+
+.basket-weave {
+    background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
+                     linear-gradient(-45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+.double-nine-patch {
+    background-image: linear-gradient(#fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%),
+                     linear-gradient(90deg, #fff 33.33%, #ddd 33.33%, #ddd 66.66%, #fff 66.66%),
+                     linear-gradient(#ddd 45%, transparent 45%, transparent 55%, #ddd 55%),
+                     linear-gradient(90deg, #ddd 45%, transparent 45%, transparent 55%, #ddd 55%);
+    background-size: 100% 100%, 100% 100%, 33.33% 33.33%, 33.33% 33.33%;
+    background-position: center, center, center, center;
+}
+
+/* Grid-related styles */
+.grid {
+    display: grid;
+    gap: 1px;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    touch-action: none;
+    min-height: 380px;
+    min-width: 380px;
+}
+
+.grid-cell {
+    background-color: white;
+    touch-action: none;
+    cursor: pointer;
+}
+
+.grid-cell.selected {
+    box-shadow: inset 0 0 0 2px var(--accent-color);
+}
+
+/* Half-square triangle cells */
+.grid-cell.hst {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-cell.hst:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.grid-cell.hst:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Zoom controls */
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 50;
+}
+
+.zoom-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.zoom-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Touch controls - specifically helpful for tablets */
+.touch-indicator {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--primary-color);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.touch-indicator.active {
+    opacity: 1;
+}
+
+/* Add to your styles.css file */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-tools {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.palette-nav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 5px;
+    color: var(--primary-color);
+}
+
+.color-palettes {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.color-palette {
+    display: none;
+}
+
+.color-palette.active {
+    display: block;
+}
+
+/* HST styling */
+.grid-cell.hst {
+    position: relative;
+    background-color: transparent !important;
+}
+
+.grid-cell.hst::before,
+.grid-cell.hst::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Top-right orientation (default) */
+.grid-cell.hst::before {
+    background-color: var(--triangle-color1);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.grid-cell.hst::after {
+    background-color: var(--triangle-color2);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Top-left orientation */
+.grid-cell.hst[data-orientation="top-left"]::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.grid-cell.hst[data-orientation="top-left"]::after {
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+/* Bottom-right orientation */
+.grid-cell.hst[data-orientation="bottom-right"]::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.grid-cell.hst[data-orientation="bottom-right"]::after {
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+/* Bottom-left orientation */
+.grid-cell.hst[data-orientation="bottom-left"]::before {
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.grid-cell.hst[data-orientation="bottom-left"]::after {
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+/* Additional orientations for the 4 sides */
+.grid-cell.hst[data-orientation="top"]::before {
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.grid-cell.hst[data-orientation="top"]::after {
+    clip-path: polygon(0 0, 50% 100%, 0 100%);
+    clip-path: polygon(50% 100%, 100% 0, 100% 100%, 0 100%);
+}
+
+.grid-cell.hst[data-orientation="right"]::before {
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+.grid-cell.hst[data-orientation="right"]::after {
+    clip-path: polygon(0 0, 100% 0, 0 50%, 0 100%);
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 0 50%);
+}
+
+.grid-cell.hst[data-orientation="bottom"]::before {
+    clip-path: polygon(0 100%, 100% 100%, 50% 0);
+}
+
+.grid-cell.hst[data-orientation="bottom"]::after {
+    clip-path: polygon(0 0, 50% 0, 0 100%);
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.grid-cell.hst[data-orientation="left"]::before {
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+
+.grid-cell.hst[data-orientation="left"]::after {
+    clip-path: polygon(100% 0, 0 0, 100% 50%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 50%);
+}
+
+/* HST Controls for tablet interaction */
+.hst-controls {
+    position: absolute;
+    display: none;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 8px;
+    z-index: 200;
+    touch-action: none;
+}
+
+.hst-controls.visible {
+    display: flex;
+    gap: 8px;
+}
+
+.hst-control-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.hst-control-button svg {
+    fill: currentColor;
+}
+
+.hst-control-button.rotate-button:active {
+    animation: rotate 0.3s;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(90deg); }
+}
+
+.grid-cell.selected {
+    box-shadow: 0 0 0 3px var(--accent-color) !important;
+}
+
+/* Update the HST CSS to match the clock position mental model */
+/* 
+   Clock positions:
+   - top-left = 11 o'clock (pointing to 11)  
+   - top-right = 2 o'clock (pointing to 2)
+   - bottom-right = 4 o'clock (pointing to 4)
+   - bottom-left = 8 o'clock (pointing to 8)
+*/
+
+/* HST styling - base */
+.grid-cell.hst {
+    position: relative;
+    background-color: transparent !important;
+}
+
+.grid-cell.hst::before,
+.grid-cell.hst::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Top-right orientation (2 o'clock) */
+.grid-cell.hst[data-orientation="top-right"]::before {
+    background-color: var(--triangle-color1);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.grid-cell.hst[data-orientation="top-right"]::after {
+    background-color: var(--triangle-color2);
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+/* Bottom-right orientation (4 o'clock) */
+.grid-cell.hst[data-orientation="bottom-right"]::before {
+    background-color: var(--triangle-color1);
+    clip-path: polygon(100% 100%, 100% 0, 0 100%);
+}
+
+.grid-cell.hst[data-orientation="bottom-right"]::after {
+    background-color: var(--triangle-color2);
+    clip-path: polygon(100% 0, 0 0, 0 100%);
+}
+
+/* Bottom-left orientation (8 o'clock) */
+.grid-cell.hst[data-orientation="bottom-left"]::before {
+    background-color: var(--triangle-color1);
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+}
+
+.grid-cell.hst[data-orientation="bottom-left"]::after {
+    background-color: var(--triangle-color2);
+    clip-path: polygon(100% 100%, 100% 0, 0 0);
+}
+
+/* Top-left orientation (11 o'clock) */
+.grid-cell.hst[data-orientation="top-left"]::before {
+    background-color: var(--triangle-color1);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.grid-cell.hst[data-orientation="top-left"]::after {
+    background-color: var(--triangle-color2);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* HST sample for block counts */
+.hst-sample {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+}
+
+.hst-sample::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--triangle-color1);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.hst-sample::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--triangle-color2);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}

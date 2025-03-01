@@ -1,0 +1,171 @@
+.quilt-grid {
+    display: grid;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    touch-action: manipulation;
+}
+
+.quilt-cell {
+    position: relative;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.quilt-cell.selected {
+    outline: 2px solid var(--primary-color);
+    z-index: 1;
+}
+
+.quilt-cell.half-square-triangle {
+    overflow: hidden;
+}
+
+.quilt-cell .triangle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.triangle-1 {
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.triangle-2 {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Zoom controls */
+.grid-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.zoom-control {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.zoom-control button {
+    border: none;
+    background-color: transparent;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.zoom-level {
+    padding: 0 0.5rem;
+}
+
+/* Quilt Grid Specific Styles */
+
+#gridContainer {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quilt-grid {
+  display: grid;
+  gap: 1px;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  min-width: 300px;
+  min-height: 300px;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+}
+
+.quilt-cell {
+  position: relative;
+  background-color: white;
+  user-select: none;
+  touch-action: none;
+  cursor: pointer;
+}
+
+/* Half-square triangles */
+.half-square-triangle {
+  position: relative;
+  overflow: hidden;
+}
+
+.triangle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.triangle-1 {
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+  z-index: 2;
+}
+
+.triangle-2 {
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  z-index: 1;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+  .quilt-grid {
+    min-width: 250px;
+    max-width: 100%;
+  }
+}
+
+/* Zoom controls (for future implementation) */
+.zoom-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.zoom-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* For touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .quilt-cell {
+    min-height: 40px; /* Ensure cells are big enough for touch */
+  }
+}
+
+/* Block visual in the block list */
+.block-info {
+  font-size: 0.9rem;
+}
+
+/* For the block preview in the list */
+.block-visual .triangle-1 {
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+
+.block-visual .triangle-2 {
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
